@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/navbar.css";
 const _ = require("lodash");
+import Upload from "./Upload.js";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -8,6 +9,13 @@ export default class Navbar extends Component {
   }
 
   render() {
-    return <div className="navbar" />;
+    return (
+      <div className="navbar">
+        <form>
+          <button onClick={() => this.props.onChange()}>Home</button>
+        </form>
+        <Upload />
+      </div>
+    );
   }
 }

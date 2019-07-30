@@ -17,11 +17,16 @@ export default class App extends Component {
     });
   }
 
+  changeCurrentViewThroughNavBar(event) {
+    event.preventDefault();
+    this.setState({ currentView: "AllPhotos" });
+  }
+
   render() {
     return (
       <div className="app">
         <h1>Hello World!</h1>
-        <Navbar />
+        <Navbar onChange={this.changeCurrentViewThroughNavBar} />
         {this.state.currentView === "AllPhotos" ? (
           <AllPhotos />
         ) : (

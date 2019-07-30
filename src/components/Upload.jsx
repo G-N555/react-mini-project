@@ -8,6 +8,12 @@ export default class Upload extends Component {
   }
 
   render() {
-    return <div className="file-upload" />;
+    return (
+      <div className="file-upload">
+        <form>
+          <button onClick={() => this.props.onChange()}>Upload</button>
+        </form>
+      </div>
+    );
   }
 }
