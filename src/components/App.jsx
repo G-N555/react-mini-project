@@ -22,16 +22,19 @@ export default class App extends Component {
     this.setState({ currentView: "AllPhotos" });
   }
 
+  uploadFileThroughNavBar(file) {}
+
   render() {
     return (
       <div className="app">
         <h1>Hello World!</h1>
         <Navbar onChange={this.changeCurrentViewThroughNavBar} />
-        {this.state.currentView === "AllPhotos" ? (
-          <AllPhotos />
+        <AllPhotos allPhotosArrayFromApp={this.state.photos} />
+        {/* {this.state.currentView === "AllPhotos" ? (
+          <AllPhotos allPhotosArrayFromApp={this.state.photos} />
         ) : (
           <SinglePhoto />
-        )}
+        )} */}
       </div>
     );
   }
