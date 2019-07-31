@@ -5,25 +5,16 @@ import _ from "lodash";
 export default class Upload extends Component {
   constructor(props) {
     super(props);
-    // this.myRef = React.createRef();
   }
 
   render() {
     return (
       <div className="file-upload">
         <form>
-          <button
-          // onClick={(file) =>{
-          //   this.props.onSubmit(file)
-          // }
-          >
-            Upload
-          </button>
+          <input type="file" onChange={this.props.giveUpload} />
+          Upload
         </form>
       </div>
     );
   }
 }
-
-//there's an input type for files! its conditional on clicking
-//capture, save, display

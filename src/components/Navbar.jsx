@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/navbar.css";
 import Upload from "./Upload.jsx";
+import { saveObject } from "../utils";
 const _ = require("lodash");
 
 export default class Navbar extends Component {
@@ -8,14 +9,21 @@ export default class Navbar extends Component {
     super(props);
   }
 
-  uploadFileFromInput(file) {}
+  passValueToParent = () => {};
+
   render() {
     return (
       <div className="navbar">
         <form>
-          <button onClick={() => this.props.onChange()}>Home</button>
+          <h1
+            onClick={() => {
+              this.props.changeView();
+            }}
+          >
+            Home
+          </h1>
         </form>
-        <Upload onSubmit={this.uploadFileFromInput} />
+        <Upload giveUpload={this.props.upload} />
       </div>
     );
   }

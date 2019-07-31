@@ -8,33 +8,53 @@ import SinglePhoto from "./SinglePhoto";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { currentView: "AllPhotos", photos: [], selectedPhoto: "" };
+    this.state = {
+      currentView: "AllPhotos",
+      photos: [],
+      selectedPhoto: undefined
+    };
   }
 
   componentDidMount() {
-    listObjects().then(data => {
-      this.setState({ photos: data });
+    //check for local storage
+    listObjects().then(list => {
+      list.map(data =>
+        getSingleObject(data.Key).then(photoData => {
+          localStorage.setItem("photos", photoData);
+          this.setState({ photos: this.state.photos.concat(photoData) });
+        })
+      );
     });
   }
 
-  changeCurrentViewThroughNavBar(event) {
-    event.preventDefault();
-    this.setState({ currentView: "AllPhotos" });
+  componentDidUpdate() {
+    //localStorage.setItem("photos", this.state.photos);
   }
 
-  uploadFileThroughNavBar(file) {}
+  changeCurrentViewThroughNavBar = () => {
+    this.setState({
+      currentView: !this.state.currentView,
+      selectedPhoto: this.state.photos[0]
+    });
+  };
+
+  uploadFileThroughNavBar = event => {
+    saveObject(event.target.files[0]);
+  };
 
   render() {
     return (
       <div className="app">
         <h1>Hello World!</h1>
-        <Navbar onChange={this.changeCurrentViewThroughNavBar} />
-        <AllPhotos allPhotosArrayFromApp={this.state.photos} />
-        {/* {this.state.currentView === "AllPhotos" ? (
+        <Navbar
+          changeView={this.changeCurrentViewThroughNavBar}
+          upload={this.uploadFileThroughNavBar}
+        />
+        {this.state.currentView === "AllPhotos" ? (
           <AllPhotos allPhotosArrayFromApp={this.state.photos} />
         ) : (
-          <SinglePhoto />
-        )} */}
+          <SinglePhoto currentPhoto={this.state.selectedPhoto} />
+        )}
       </div>
     );
   }

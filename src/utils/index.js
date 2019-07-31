@@ -67,7 +67,7 @@ export function saveObject(file) {
           console.error("error: ", error);
           return;
         }
-
+        console.log(data);
         resolve(data);
       }
     );
