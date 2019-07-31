@@ -11,6 +11,21 @@ export default class Navbar extends Component {
 
   passValueToParent = () => {};
 
+  refresh(e) {
+    e.preventDefault();
+    window.location.reload();
+  }
+
+  //add refresh button
+  /*
+    <button
+            value="Refresh Page"
+            onClick={this.refresh}
+            height="200px"
+            width="200px"
+          />
+  */
+
   render() {
     return (
       <div className="navbar">

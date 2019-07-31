@@ -8,6 +8,7 @@ export default class AllPhotos extends Component {
   }
 
   render() {
+    // console.log("allphotos", this.props.allPhotosArrayFromApp);
     return (
       <div>
         {this.props.allPhotosArrayFromApp.map(data => (
