@@ -24,19 +24,20 @@ export default class Navbar extends Component {
             height="200px"
             width="200px"
           />
+          <button type="submit" form="form1" value="Submit">Submit</button>
   */
 
   render() {
     return (
       <div className="navbar">
         <form>
-          <h1
+          <header
             onClick={() => {
               this.props.changeView();
             }}
           >
             Home
-          </h1>
+          </header>
         </form>
         <Upload giveUpload={this.props.upload} />
       </div>

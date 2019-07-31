@@ -10,7 +10,7 @@ export default class AllPhotos extends Component {
   render() {
     // console.log("allphotos", this.props.allPhotosArrayFromApp);
     return (
-      <div>
+      <div className="containerImage">
         {this.props.allPhotosArrayFromApp.map(data => (
           <img
             src={`data:image/png;base64,${data}`}
