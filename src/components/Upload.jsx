@@ -15,12 +15,15 @@ export default class Upload extends Component {
     return (
       <div className="file-upload">
         <form>
+          <button type="button">
+            <label for="input">Upload</label>
+          </button>
           <input
+            id="input"
             type="file"
             ref={this.uploadRef}
             onChange={this.props.giveUpload}
           />
-          Upload
         </form>
       </div>
     );

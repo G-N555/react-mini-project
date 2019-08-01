@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../styles/navbar.css";
 import Upload from "./Upload.jsx";
 import { saveObject } from "../utils";
+import RefreshButton from "./Refresh.jsx";
 const _ = require("lodash");
 
 export default class Navbar extends Component {
@@ -30,16 +31,18 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="navbar">
+        <h1 className="title">HELLO WORLD</h1>
         <form>
-          <header
-            onClick={() => {
-              this.props.changeView();
+          <button
+            onClick={e => {
+              this.props.changeView(e);
             }}
           >
             Home
-          </header>
+          </button>
         </form>
         <Upload giveUpload={this.props.upload} />
+        <RefreshButton />
       </div>
     );
   }
