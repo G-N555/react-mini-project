@@ -5,11 +5,9 @@ import Navbar from "./Navbar";
 import AllPhotos from "./AllPhotos";
 import SinglePhoto from "./SinglePhoto";
 import Carousel from "./Carousel";
+import { connect } from "react-redux";
 
-//I commented out sixth and seventh columns in AllPhotos.jsx
-//I changed list.slice(0,20) => list.slice(0,100)
-//
-
+//css on margin sides and between
 export default class App extends Component {
   constructor(props) {
     super(props);
