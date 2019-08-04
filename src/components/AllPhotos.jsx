@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { getSingleObject } from "../utils/index.js";
+import { connect } from "react-redux";
 
-export default class AllPhotos extends Component {
+class AllPhotos extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ export default class AllPhotos extends Component {
     return (
       <div className="containerDivForImage">
         <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(0, 5).map((data, i) => (
+          {this.props.photos.slice(0, 5).map((data, i) => (
             <img
               id={i}
               key={i}
@@ -20,13 +20,13 @@ export default class AllPhotos extends Component {
               alt=""
               className="singleImageForAllPhotos"
               onClick={e => {
-                this.props.changeView(e);
+                this.props.changeToSingle(e.target.id);
               }}
             />
           ))}
         </div>
         <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(5, 10).map((data, i) => (
+          {this.props.photos.slice(5, 10).map((data, i) => (
             <img
               id={i + 5}
               key={i}
@@ -34,13 +34,13 @@ export default class AllPhotos extends Component {
               alt=""
               className="singleImageForAllPhotos"
               onClick={e => {
-                this.props.changeView(e);
+                this.props.changeToSingle(e.target.id);
               }}
             />
           ))}
         </div>
         <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(10, 15).map((data, i) => (
+          {this.props.photos.slice(10, 15).map((data, i) => (
             <img
               id={i + 10}
               key={i}
@@ -48,13 +48,13 @@ export default class AllPhotos extends Component {
               alt=""
               className="singleImageForAllPhotos"
               onClick={e => {
-                this.props.changeView(e);
+                this.props.changeToSingle(e.target.id);
               }}
             />
           ))}
         </div>
         <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(15, 20).map((data, i) => (
+          {this.props.photos.slice(15, 20).map((data, i) => (
             <img
               id={i + 15}
               key={i}
@@ -62,13 +62,13 @@ export default class AllPhotos extends Component {
               alt=""
               className="singleImageForAllPhotos"
               onClick={e => {
-                this.props.changeView(e);
+                this.props.changeToSingle(e.target.id);
               }}
             />
           ))}
         </div>
         <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(20, 25).map((data, i) => (
+          {this.props.photos.slice(20, 25).map((data, i) => (
             <img
               id={i + 20}
               key={i}
@@ -76,78 +76,36 @@ export default class AllPhotos extends Component {
               alt=""
               className="singleImageForAllPhotos"
               onClick={e => {
-                this.props.changeView(e);
+                this.props.changeToSingle(e.target.id);
               }}
             />
           ))}
         </div>
-        <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(25, 30).map((data, i) => (
-            <img
-              id={i + 25}
-              key={i}
-              src={`data:image/png;base64,${data}`}
-              alt=""
-              className="singleImageForAllPhotos"
-              onClick={e => {
-                this.props.changeView(e);
-              }}
-            />
-          ))}
-        </div>
-        {/* <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(35, 40).map((data, i) => (
-            <img
-              id={i + 30}
-              key={i}
-              src={`data:image/png;base64,${data}`}
-              alt=""
-              className="singleImageForAllPhotos"
-              onClick={e => {
-                this.props.changeView(e);
-              }}
-            />
-          ))}
-        </div>
-        <div className="columnContainer">
-          {this.props.allPhotosArrayFromApp.slice(45, 50).map((data, i) => (
-            <img
-              key={i}
-              src={`data:image/png;base64,${data}`}
-              alt=""
-              className="singleImageForAllPhotos"
-              onClick={e => {
-                this.props.changeView(e);
-              }}
-            />
-          ))}
-        </div> */}
       </div>
     );
   }
 }
 
-/*
+const mapStateToProps = state => {
+  return {
+    currentView: state.currentView,
+    photos: state.photos,
+    selectedPHoto: state.selectedPhoto
+  };
+};
 
+const mapDispatchToProps = dispatch => {
+  return {
+    changeToSingle: id => {
+      dispatch({
+        type: "CHANGE_SINGLE",
+        payload: id
+      });
+    }
+  };
+};
 
-*/
-
-{
-  /* 
-        
-        <div className="containerDivForImage">
-        {this.props.allPhotosArrayFromApp.forEach(photo => {
-          iterateArray.push(photo);
-          if (iterateArray.length === 5) {
-            return iterateArray.map((data, i) => (
-              <img
-                key={i}
-                src={`data:image/png;base64,${data}`}
-                alt=""
-                className="singleImageForAllPhotos"
-              />
-            ));
-          }
-        })}
-      </div>*/
-}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllPhotos);

@@ -31,8 +31,6 @@ body {
 }
 
 .singleImageForAllPhotos {
-  /* width: 200px;
-  height: 100px; */
   margin-top: 8px;
   vertical-align: middle;
   width: 100%;
@@ -42,7 +40,6 @@ body {
 .singleImageForAllPhotos:hover {
   transition-duration: 0.3s;
   transform: scale(1.03);
-  /* border-color: black; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
 }
 
@@ -58,14 +55,22 @@ body {
   height: 200px;
 }
 
-.carouselSingleImage2:hover {
+.carouselCenterImage {
+  max-width: 1600px;
+  max-height: 1200px;
+  height: 200px;
+}
+
+.carouselCenterImage:hover {
+  transition-duration: 1s;
   transform: scale(1.1);
 }
 
 .carouselContainerDiv {
-  background-color: grey;
-  display: inline-flex;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: rgb(34, 41, 41);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }

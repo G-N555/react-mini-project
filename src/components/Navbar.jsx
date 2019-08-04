@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "../styles/navbar.css";
 import Upload from "./Upload.jsx";
-import { saveObject } from "../utils";
 import RefreshButton from "./Refresh.jsx";
+import { connect } from "react-redux";
 const _ = require("lodash");
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,25 +17,15 @@ export default class Navbar extends Component {
     window.location.reload();
   }
 
-  //add refresh button
-  /*
-    <button
-            value="Refresh Page"
-            onClick={this.refresh}
-            height="200px"
-            width="200px"
-          />
-          <button type="submit" form="form1" value="Submit">Submit</button>
-  */
-
   render() {
     return (
       <div className="navbar">
-        <h1 className="title">HELLO WORLD</h1>
+        <h1 className="title">THIS IS REACT-REDUX</h1>
         <form>
           <button
-            onClick={e => {
-              this.props.changeView(e);
+            type="button"
+            onClick={() => {
+              this.props.changeView();
             }}
           >
             Home
@@ -47,3 +37,18 @@ export default class Navbar extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    changeView: currentView => {
+      dispatch({
+        type: "CHANGE_VIEW",
+        payload: currentView
+      });
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Navbar);

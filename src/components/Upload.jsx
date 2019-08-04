@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import "../styles/upload.css";
 import _ from "lodash";
-
+import { saveObject } from "../utils";
 export default class Upload extends Component {
   constructor(props) {
     super(props);
     this.uploadRef = React.createRef();
   }
 
-  componentDidMount() {
-    console.log("ref", this.uploadRef);
-  }
+  upload = file => {
+    saveObject(file);
+  };
+
   render() {
     return (
       <div className="file-upload">
@@ -22,7 +23,9 @@ export default class Upload extends Component {
             id="input"
             type="file"
             ref={this.uploadRef}
-            onChange={this.props.giveUpload}
+            onChange={e => {
+              this.upload(e.target.files[0]);
+            }}
           />
         </form>
       </div>

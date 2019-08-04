@@ -1,19 +1,52 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App.jsx";
-// import { Provider } from "react-redux";
-// import { createStore } from "redux";
-// import { initialSate, reducer } from "./redux/actions";
-// //  = require("./redux/actions");
-// const initialState = ["hello"];
-// const store = createStore(reducer, initialState);
 import { Provider } from "react-redux";
-import { reducer } from "./redux/actions";
 import { createStore } from "redux";
+import { saveObject } from "./utils/index";
 
-let initialStore = {};
+let initialState = {
+  currentView: true,
+  photos: [],
+  selectedPhoto: ""
+};
 
-const store = createStore(reducer, initialStore);
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "ALL_PHOTO": {
+      return {
+        currentView: true,
+        photos: action.payload,
+        selectedPhoto: ""
+      };
+    }
+    case "CHANGE_SINGLE": {
+      return {
+        currentView: false,
+        photos: state.photos,
+        selectedPhoto: state.photos[action.payload]
+      };
+    }
+    case "CHANGE_ALL": {
+      return {
+        currentView: action.payload,
+        photos: state.photos,
+        selectedPhoto: state.selectedPhoto
+      };
+    }
+    case "CHANGE_VIEW": {
+      return {
+        currentView: !state.currentView,
+        photos: state.photos,
+        selectedPhoto: state.selectedPhoto
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>
